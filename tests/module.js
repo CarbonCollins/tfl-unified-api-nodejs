@@ -178,7 +178,9 @@ module.exports = () => {
           expect(payload.params).to.have.all.keys(['app_id', 'app_key', 'testParm']);
           expect(payload.params.app_key).to.be.equal(serverValidKey);
           expect(payload.params.app_id).to.be.equal(serverValidId);
-          expect(payload.params.testParm).to.be.equal('true');
+          expect(payload.params.testParm).to.be.equal('true'); 
+          expect(payload.req.headers).to.deep.include({ accept: 'application/json' });
+          expect(payload.req.method).to.be.equal('GET');
           done();
         });
         CUT.sendRequest('/test/url', { testParm: true })
