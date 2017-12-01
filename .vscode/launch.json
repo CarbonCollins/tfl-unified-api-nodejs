@@ -14,7 +14,10 @@
       "type": "node",
       "request": "launch",
       "name": "Test",
-      "program": "${workspaceFolder}\\tests\\test.js"
+      "env": {
+        "NODE_ENV": "testing"
+      },
+      "program": "npm test"
     }
   ]
 }

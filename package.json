@@ -21,7 +21,8 @@
         "istanbul": "^0.4.5",
         "jsdoc-to-markdown": "^3.0.2",
         "jsdoc-x": "^2.0.1",
-        "mocha": "^4.0.1"
+        "mocha": "^4.0.1",
+        "rewire": "^3.0.2"
     },
     "dependencies": {
         "request": "^2.83.0",

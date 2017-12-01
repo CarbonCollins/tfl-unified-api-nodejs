@@ -22,6 +22,7 @@ matrix:
 env:
   global:
     - CC_TEST_REPORTER_ID=4ec83f1d841acdd74d7b402ee6502e15a12fcc882e09f732cbf859a2c1c595f4
+    - NODE_ENV=testing
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter

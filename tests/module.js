@@ -6,6 +6,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const jsdoc2md = require('jsdoc-to-markdown');
 const diff = require('diff');
+const rewire = require('rewire');
 
 const packageJSON = require('../package.json');
 
@@ -106,6 +107,18 @@ module.exports = () => {
           .catch((err) => {
             done(err);
           })
+      }));
+
+      packageSuite.addTest(new Test('parseParameters functional', () => {
+        const MUT = rewire('../lib/main');
+        const parseParameters = MUT.__get__('parseParameters');
+        expect(parseParameters).to.be.an('function', 'parseParameters is missing from main.js');
+        const emptyResponse = parseParameters();
+        const blankResponse = parseParameters({});
+        expect(emptyResponse).to.be.an('object', 'parseParameters should return an object (param null)');
+        expect(emptyResponse).to.be.deep.equal({}, 'parseParameters should return an empty object');
+        expect(blankResponse).to.be.an('object', 'parseParameters should return an object (param {})');
+        expect(blankResponse).to.be.deep.equal({}, 'parseParameters should return an empty object');
       }));
 
       moduleSuite.addSuite(packageSuite);
