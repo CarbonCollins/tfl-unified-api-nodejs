@@ -7,6 +7,9 @@ const path = require('path');
 const jsdoc2md = require('jsdoc-to-markdown');
 const diff = require('diff');
 const rewire = require('rewire');
+const http = require('http');
+const EventEmitter = require('events');
+const qs = require('querystring');
 
 const packageJSON = require('../package.json');
 
@@ -15,6 +18,13 @@ const Suite = Mocha.Suite;
 const expect = Chai.expect;
 
 const OWM = require('../index');
+
+const serverEmitter = new EventEmitter();
+const serverPort = 3335;
+const serverHost = '127.0.0.1';
+const serverValidKey = 'validKey';
+const serverValidId = 'validId';
+let server;
 
 // ----- module export tests ----- //
 
@@ -42,6 +52,39 @@ module.exports = () => {
 
       const packageSuite = new Suite('Package tests');
       packageSuite.timeout(15000);
+
+      packageSuite.beforeAll('Test Endpoint setup', (done) => {
+        server = http.createServer((req, res) => {
+          let data = '';
+
+          req.on('data', (chunk) => { data += chunk; });
+
+          req.on('end', () => {
+            serverEmitter.emit('receivedRequest', {
+              req,
+              body: qs.parse(data) || {},
+              params: (req.url.includes('?'))
+                ? qs.parse(req.url.split('?')[1]) || {}
+                : {}
+            });
+
+            res.writeHead(200);
+            res.end();
+          });
+        });
+
+        server.on('listening', () => {
+          done();
+        });
+
+        server.listen(serverPort, serverHost);
+      });
+
+      moduleSuite.afterAll('Test Endpoint destroy', (done) => {
+        server.close((err) => {
+          done(err);
+        })
+      });
 
       packageSuite.addTest(new Test('package.json details', () => {
         expect(packageJSON.name).to.be.equal('tfl-unified-api', 'tests not being run on the correct package. Needs to be run on the npm package for tfl-unified-api');
@@ -115,10 +158,31 @@ module.exports = () => {
         expect(parseParameters).to.be.an('function', 'parseParameters is missing from main.js');
         const emptyResponse = parseParameters();
         const blankResponse = parseParameters({});
+        const popResponse = parseParameters({ testParm: true });
         expect(emptyResponse).to.be.an('object', 'parseParameters should return an object (param null)');
         expect(emptyResponse).to.be.deep.equal({}, 'parseParameters should return an empty object');
         expect(blankResponse).to.be.an('object', 'parseParameters should return an object (param {})');
         expect(blankResponse).to.be.deep.equal({}, 'parseParameters should return an empty object');
+        expect(popResponse).to.be.an('object', 'parseParameters should return an object (param { testParm: true })');
+        expect(popResponse).to.be.deep.equal({ testParm: true }, 'parseParameters should return a populated object');
+      }));
+
+      packageSuite.addTest(new Test('sendRequest functional', (done) => {
+        const MUT = rewire('../lib/main');
+        const TfLUnified = MUT.__get__('TfLUnified');
+        expect(TfLUnified).to.be.an('function', 'TfLUnified class constructor should be present');
+        const CUT = new TfLUnified({ app_key: serverValidKey, app_id: serverValidId, host: serverHost, port: serverPort });
+        expect(CUT).to.be.an('object', 'TfLUnified class should have been constructed');
+
+        serverEmitter.once('receivedRequest', (payload) => {
+          expect(payload.params).to.have.all.keys(['app_id', 'app_key', 'testParm']);
+          expect(payload.params.app_key).to.be.equal(serverValidKey);
+          expect(payload.params.app_id).to.be.equal(serverValidId);
+          expect(payload.params.testParm).to.be.equal('true');
+          done();
+        });
+        CUT.sendRequest('/test/url', { testParm: true })
+          .catch((err) => { console.error(err); done(err); });
       }));
 
       moduleSuite.addSuite(packageSuite);

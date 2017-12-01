@@ -22,6 +22,7 @@
         "jsdoc-to-markdown": "^3.0.2",
         "jsdoc-x": "^2.0.1",
         "mocha": "^4.0.1",
+        "querystring": "^0.2.0",
         "rewire": "^3.0.2"
     },
     "dependencies": {
