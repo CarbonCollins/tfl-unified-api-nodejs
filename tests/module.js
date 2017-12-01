@@ -40,6 +40,7 @@ module.exports = () => {
     .then((moduleNames) => {
 
       const packageSuite = new Suite('Package tests');
+      packageSuite.timeout(15000);
 
       packageSuite.addTest(new Test('package.json details', () => {
         expect(packageJSON.name).to.be.equal('tfl-unified-api', 'tests not being run on the correct package. Needs to be run on the npm package for tfl-unified-api');
