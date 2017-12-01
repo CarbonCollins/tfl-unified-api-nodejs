@@ -26,16 +26,10 @@ before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
+script:
+  - npm run $UNIT
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-script:
-- npm run $UNIT
-deploy:
-  provider: npm
-  email: "$NPM_EMAIL"
-  api_key: "$NPM_AUTH_TOKEN"
-  on:
-    tags: true
 notifications:
   slack:
     secure: idZySEFjzRjO1jbvuYf/uQ16Qq/kWR6rvq202y1IGzXsVrvGReoSvB5B1tRf0JkacHQFwOd/zn6qfvmlUA9ItpAkWg+ZNHooNDlrOxjkqPUEKF0K70HrKUDfkqAQwJy9tzrFD4YYRw01jm7/NPuLu/H0VQ9zdOpIviNUpI916wgKJOQSk/X70pzl+8FGo8DDSmeM7tfYcFt/WtBeRzINeVQKnzOU8IhEiJUB1uoud/i0ntOnJyRtnckAyrTiZeiZOmNWmdeNJX0R3Np+eBoKM641/vFqQZmnLBUnw1pUVleiH4lYzBGaVNLgJdEPbaPP12+wDwTDKT70YcBnTFbAuTx66TVIl39aJQlvfQp8+6NKpFc5FnvqWtxx0VN7MidzikIiFz/6IWi7+G0lhn4Suoev0rFsh39Z7dWSSd7YwNmEPgs9OWyHZicuAobyE7C9W/sJ9ZSvt2wSGU9lXuyrcIDX1GbGKDyqmcqeTDOK0pEvyrL3GI/P7yfqWe7TyEV7pcwC58HT6yWueCj86JIA7IE3/+o+U6zNORd3ySKYmWHjw5fPz8HFDYeUS1kDbJYIXsX28ZQVExOQW0FIhIoDoH95v7K4dS41190sx6VCpQLvPIQqm+yvl90Qk8DEw/NxJY6CFOjVeI5Ao5ofUWtmzYQ36EH5M05BScg/mp+HKCI=
