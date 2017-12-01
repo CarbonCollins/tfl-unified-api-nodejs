@@ -1,0 +1,23 @@
+{
+    "name": "tfl-unified-api-nodejs",
+    "version": "1.0.0",
+    "description": "An abstraction layer for accessing the TfL Unified API",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Steven Collins",
+    "license": "MIT",
+    "devDependencies": {
+        "babel-eslint": "^8.0.2",
+        "eslint": "^4.12.1",
+        "eslint-plugin-security": "^1.4.0",
+        "fs-extra": "^4.0.2",
+        "gulp": "^3.9.1",
+        "jsdoc-to-markdown": "^3.0.2"
+    },
+    "dependencies": {
+        "request": "^2.83.0",
+        "request-promise-native": "^1.0.5"
+    }
+}
