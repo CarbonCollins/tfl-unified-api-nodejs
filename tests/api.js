@@ -124,8 +124,12 @@ module.exports = () => {
 
           moduleAPIFunctionSuite.addTest(new Test('Function calls API endpoint', (done) => {
             const MUTT = new TfLUnified({ app_key: serverValidKey, app_id: serverValidId, host: serverHost, port: serverPort, useHttp: true });
-            const IMUT = new TfLUnified({ app_key: 'invalidKey', app_id: serverValidId, host: serverHost, port: serverPort, useHttp: true });
-            serverEmitter.once('receivedRequest', (result) => {
+            serverEmitter.once('receivedRequest', (payload) => {
+              expect(payload.params).to.include.keys(['app_id', 'app_key']);
+              expect(payload.params.app_key).to.be.equal(serverValidKey);
+              expect(payload.params.app_id).to.be.equal(serverValidId);
+              expect(payload.req.headers).to.deep.include({ accept: 'application/json' });
+              expect(payload.req.method).to.be.equal('GET');
               // console.log(result); // MEEEEp
               done();
             });
