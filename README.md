@@ -5,5 +5,6 @@
 [![GitHub release](https://img.shields.io/github/release/CarbonCollins/tfl-unified-api-nodejs/all.svg?style=flat-square)]()
 [![David](https://img.shields.io/david/CarbonCollins/tfl-unified-api-nodejs.svg?style=flat-square)]()
 [![David](https://img.shields.io/david/dev/CarbonCollins/tfl-unified-api-nodejs.svg?style=flat-square)]()
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/CarbonCollins/tfl-unified-api-nodejs.svg?style=flat-square)](https://codeclimate.com/github/CarbonCollins/tfl-unified-api-nodejs)
 
 An abstraction layer for accessing the TfL Unified API
