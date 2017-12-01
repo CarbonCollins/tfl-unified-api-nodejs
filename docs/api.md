@@ -12,6 +12,9 @@
 <dt><a href="#MetaMode">MetaMode</a> : <code>Object</code></dt>
 <dd><p>a response object for detailing TfL transport Meta Modes</p>
 </dd>
+<dt><a href="#MetaSeverity">MetaSeverity</a> : <code>Object</code></dt>
+<dd><p>a response object for detailing TfL severity codes</p>
+</dd>
 </dl>
 
 <a name="module_TfLUnified/api"></a>
@@ -24,7 +27,7 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
 * [TfLUnified/api](#module_TfLUnified/api)
     * [.Line](#module_TfLUnified/api.Line) ⇐ [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)
         * [~listValidModes()](#module_TfLUnified/api.Line..listValidModes) ⇒ [<code>Array.&lt;MetaMode&gt;</code>](#MetaMode)
-        * [~listSeverityCodes()](#module_TfLUnified/api.Line..listSeverityCodes) ⇒ <code>Array.&lt;Object&gt;</code>
+        * [~listSeverityCodes()](#module_TfLUnified/api.Line..listSeverityCodes) ⇒ [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity)
         * [~listDisruptionCategories()](#module_TfLUnified/api.Line..listDisruptionCategories) ⇒ <code>Array.&lt;String&gt;</code>
         * [~listServiceTypes()](#module_TfLUnified/api.Line..listServiceTypes) ⇒ <code>Array.&lt;String&gt;</code>
     * [.TfLUnified](#module_TfLUnified/api.TfLUnified)
@@ -42,7 +45,7 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
 
 * [.Line](#module_TfLUnified/api.Line) ⇐ [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)
     * [~listValidModes()](#module_TfLUnified/api.Line..listValidModes) ⇒ [<code>Array.&lt;MetaMode&gt;</code>](#MetaMode)
-    * [~listSeverityCodes()](#module_TfLUnified/api.Line..listSeverityCodes) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [~listSeverityCodes()](#module_TfLUnified/api.Line..listSeverityCodes) ⇒ [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity)
     * [~listDisruptionCategories()](#module_TfLUnified/api.Line..listDisruptionCategories) ⇒ <code>Array.&lt;String&gt;</code>
     * [~listServiceTypes()](#module_TfLUnified/api.Line..listServiceTypes) ⇒ <code>Array.&lt;String&gt;</code>
 
@@ -62,11 +65,11 @@ Lists all of the valid line transportation modes
 
 <a name="module_TfLUnified/api.Line..listSeverityCodes"></a>
 
-#### Line~listSeverityCodes() ⇒ <code>Array.&lt;Object&gt;</code>
+#### Line~listSeverityCodes() ⇒ [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity)
 Lists all of the valid line severity codes
 
 **Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
-**Returns**: <code>Array.&lt;Object&gt;</code> - an array of objects contianing the severity code  
+**Returns**: [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity) - an array of objects contianing the severity code  
 **See**: [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_MetaSeverity](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_MetaSeverity)  
 
 * * *
@@ -125,6 +128,23 @@ a response object for detailing TfL transport Meta Modes
 | isFarePaying | <code>Boolean</code> | 
 | isScheduledService | <code>Boolean</code> | 
 | modeName | <code>String</code> | 
+
+
+* * *
+
+<a name="MetaSeverity"></a>
+
+## MetaSeverity : <code>Object</code>
+a response object for detailing TfL severity codes
+
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type |
+| --- | --- |
+| modeName | <code>String</code> | 
+| severityLevel | <code>Number</code> | 
+| description | <code>String</code> | 
 
 
 * * *

@@ -1,21 +1,28 @@
+
 'use strict';
+const Mocha = require('mocha');
+const Suite = Mocha.Suite;
 
-const path = require('path');
-const TFL = require('../index');
+const moduleUnitTests = require('./module');
+// const apiUnitTests = require('./api');
 
-require('dotenv').config({ path: path.join(__dirname, '../.env.ini') });
 
-const client = new TFL({
-  app_id: process.env.TUBE_APPID,
-  app_key: process.env.TUBE_APPKEY
-});
+const mocha = new Mocha();
 
-client.listServiceTypes()
-  .then((result) => {
-    console.log('pass');
-    console.log(result);
+const fullSuite = Suite.create(mocha.suite, 'OpenWeatherMap full test suite');
+
+Promise.resolve()
+  .then(() => { return moduleUnitTests(); })
+  .then((suite) => { return fullSuite.addSuite(suite); })
+  // .then(() => { return apiUnitTests(); })
+  // .then((suite) => { return fullSuite.addSuite(suite); })
+  .then(() => { 
+    return mocha.run((failures) => {
+      process.on('exit', () => {
+        process.exit(failures);
+      });
+    });
   })
   .catch((err) => {
-    console.error('fail');
     console.error(err);
   });
