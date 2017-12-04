@@ -10,7 +10,9 @@ const client = new TFL({
   app_key: process.env.TUBE_APPKEY
 });
 
-client.listServiceTypes()
+console.log('started');
+
+client.getLinesByMode(['tube', 'bus'])
   .then((result) => {
     console.log('pass');
     console.log(result);

@@ -22,6 +22,41 @@ let server;
 
 // ----- module export tests ----- //
 
+function generateArgsFromParams(params) {
+  const parameters = ((Array.isArray(params)) ? params : [])
+    .slice(0)
+    .map((param) => {
+      return param.type.names[0];
+    })
+    .map((param) => {
+      if (param.includes('Array.<')) {
+        switch(param.substr(7, (param.length - 8))) {
+          case 'String':
+            return ['test1', 'test2', 'test3'];
+          case 'Number':
+            return [5, 7, 9];
+          case 'Object':
+            return [{ test: true }, { test: false }];
+          default:
+            return [];
+        }
+      } else {
+        switch(param) {
+          case 'String':
+            return 'test1';
+          case 'Number':
+            return 5;
+          case 'Object':
+            return { test: true };
+          default:
+            return null;
+        }
+      }
+    });
+
+  return parameters;
+}
+
 function getModuleStatics() {
   return jsdocx.parse(['./index.js', './lib/*.js'])
     .then((docs) => {
@@ -130,11 +165,11 @@ module.exports = () => {
               expect(payload.params.app_id).to.be.equal(serverValidId);
               expect(payload.req.headers).to.deep.include({ accept: 'application/json' });
               expect(payload.req.method).to.be.equal('GET');
-              // console.log(result); // MEEEEp
               done();
             });
 
-            MUTT[jsdocDetails.moduleNames[i].docs[j].name]()
+            MUTT[jsdocDetails.moduleNames[i].docs[j].name]
+              .apply(MUTT, generateArgsFromParams(jsdocDetails.moduleNames[i].docs[j].params))
               .catch((err) => { console.error(err); done(err); });
           }));
 

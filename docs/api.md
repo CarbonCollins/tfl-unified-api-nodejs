@@ -30,6 +30,10 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
         * [~listSeverityCodes()](#module_TfLUnified/api.Line..listSeverityCodes) ⇒ [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity)
         * [~listDisruptionCategories()](#module_TfLUnified/api.Line..listDisruptionCategories) ⇒ <code>Array.&lt;String&gt;</code>
         * [~listServiceTypes()](#module_TfLUnified/api.Line..listServiceTypes) ⇒ <code>Array.&lt;String&gt;</code>
+        * [~getLinesById(ids)](#module_TfLUnified/api.Line..getLinesById) ⇒ <code>Array.&lt;Object&gt;</code>
+        * [~getLineById(id)](#module_TfLUnified/api.Line..getLineById) ⇒ <code>Array.&lt;Object&gt;</code>
+        * [~getLinesByMode(modes)](#module_TfLUnified/api.Line..getLinesByMode) ⇒ <code>Array.&lt;Object&gt;</code>
+        * [~getLineByMode(mode)](#module_TfLUnified/api.Line..getLineByMode) ⇒ <code>Array.&lt;Object&gt;</code>
     * [.TfLUnified](#module_TfLUnified/api.TfLUnified)
         * [new TfLUnified(options)](#new_module_TfLUnified/api.TfLUnified_new)
 
@@ -48,6 +52,10 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
     * [~listSeverityCodes()](#module_TfLUnified/api.Line..listSeverityCodes) ⇒ [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity)
     * [~listDisruptionCategories()](#module_TfLUnified/api.Line..listDisruptionCategories) ⇒ <code>Array.&lt;String&gt;</code>
     * [~listServiceTypes()](#module_TfLUnified/api.Line..listServiceTypes) ⇒ <code>Array.&lt;String&gt;</code>
+    * [~getLinesById(ids)](#module_TfLUnified/api.Line..getLinesById) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [~getLineById(id)](#module_TfLUnified/api.Line..getLineById) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [~getLinesByMode(modes)](#module_TfLUnified/api.Line..getLinesByMode) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [~getLineByMode(mode)](#module_TfLUnified/api.Line..getLineByMode) ⇒ <code>Array.&lt;Object&gt;</code>
 
 
 * * *
@@ -55,7 +63,7 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
 <a name="module_TfLUnified/api.Line..listValidModes"></a>
 
 #### Line~listValidModes() ⇒ [<code>Array.&lt;MetaMode&gt;</code>](#MetaMode)
-Lists all of the valid line transportation modes
+Lists all of the valid line transportation modes [GET]
 
 **Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
 **Returns**: [<code>Array.&lt;MetaMode&gt;</code>](#MetaMode) - an array of objects contianing the transportation modes  
@@ -66,7 +74,7 @@ Lists all of the valid line transportation modes
 <a name="module_TfLUnified/api.Line..listSeverityCodes"></a>
 
 #### Line~listSeverityCodes() ⇒ [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity)
-Lists all of the valid line severity codes
+Lists all of the valid line severity codes [GET]
 
 **Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
 **Returns**: [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity) - an array of objects contianing the severity code  
@@ -77,7 +85,7 @@ Lists all of the valid line severity codes
 <a name="module_TfLUnified/api.Line..listDisruptionCategories"></a>
 
 #### Line~listDisruptionCategories() ⇒ <code>Array.&lt;String&gt;</code>
-Lists all of the valid line disruption categories
+Lists all of the valid line disruption categories [GET]
 
 **Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
 **Returns**: <code>Array.&lt;String&gt;</code> - an array of strings contianing the disruption categories  
@@ -88,11 +96,75 @@ Lists all of the valid line disruption categories
 <a name="module_TfLUnified/api.Line..listServiceTypes"></a>
 
 #### Line~listServiceTypes() ⇒ <code>Array.&lt;String&gt;</code>
-Lists all of the valid line service types
+Lists all of the valid line service types [GET]
 
 **Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
 **Returns**: <code>Array.&lt;String&gt;</code> - an array of strings contianing the service types  
 **See**: [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_MetaServiceTypes](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_MetaServiceTypes)  
+
+* * *
+
+<a name="module_TfLUnified/api.Line..getLinesById"></a>
+
+#### Line~getLinesById(ids) ⇒ <code>Array.&lt;Object&gt;</code>
+Gets information about the lines supplied by ids [GET]
+
+**Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
+**Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
+**See**: [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_Get](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_Get)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ids | <code>Array.&lt;String&gt;</code> | An array of line ids e.g. circle, northern, ect |
+
+
+* * *
+
+<a name="module_TfLUnified/api.Line..getLineById"></a>
+
+#### Line~getLineById(id) ⇒ <code>Array.&lt;Object&gt;</code>
+Gets information about the lines supplied by id [GET]
+
+**Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
+**Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
+**See**: [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_Get](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_Get)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | <code>String</code> | a single line id to get information for e.g. circle, northern, ect |
+
+
+* * *
+
+<a name="module_TfLUnified/api.Line..getLinesByMode"></a>
+
+#### Line~getLinesByMode(modes) ⇒ <code>Array.&lt;Object&gt;</code>
+Gets information about the lines supplied by modes [GET]
+
+**Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
+**Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
+**See**: [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_GetByMode](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_GetByMode)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| modes | <code>Array.&lt;String&gt;</code> | An array of line modes e.g. tube, bus, ect |
+
+
+* * *
+
+<a name="module_TfLUnified/api.Line..getLineByMode"></a>
+
+#### Line~getLineByMode(mode) ⇒ <code>Array.&lt;Object&gt;</code>
+Gets information about the lines supplied by mode [GET]
+
+**Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
+**Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
+**See**: [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_GetByMode](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_GetByMode)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| mode | <code>String</code> | a single line id to get information for e.g. tube, bus, ect |
+
 
 * * *
 

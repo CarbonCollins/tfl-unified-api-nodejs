@@ -13,6 +13,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Launch Dev Test",
+      "program": "${workspaceFolder}\\tests\\devTest.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Test",
       "env": {
         "NODE_ENV": "testing"
