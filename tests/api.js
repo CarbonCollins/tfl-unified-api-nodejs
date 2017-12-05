@@ -214,6 +214,29 @@ module.exports = () => {
         CUT.sendRequest('/test/url', { testParm: true })
           .catch((err) => { console.error(err); done(err); });
       }));
+      
+      moduleSuite.addTest(new Test('serialiseArray functional', () => {
+        const MUT = rewire('../lib/main');
+        const TfLUnified = MUT.__get__('TfLUnified');
+        expect(TfLUnified).to.be.an('function', 'TfLUnified class constructor should be present');
+        const CUT = new TfLUnified({ app_key: serverValidKey, app_id: serverValidId, host: serverHost, port: serverPort, useHttp: true });
+        expect(CUT).to.be.an('object', 'TfLUnified class should have been constructed');
+
+        expect(CUT.serialiseArray).to.be.an('function');
+        const emptyResult = CUT.serialiseArray();
+        const emptyArrResult = CUT.serialiseArray([]);
+        const fullStringArrResult = CUT.serialiseArray(['test1', 'test2']);
+        const fullNumArrResult = CUT.serialiseArray([1, 2]);
+
+        expect(emptyResult).to.be.an('string', 'should return a string');
+        expect(emptyResult).to.be.equal('', 'should return an empty string');
+        expect(emptyArrResult).to.be.an('string', 'should return a string');
+        expect(emptyArrResult).to.be.equal('', 'should return an empty string');
+        expect(fullStringArrResult).to.be.an('string', 'should return a string');
+        expect(fullStringArrResult).to.be.equal('test1,test2', 'should return a joined string');
+        expect(fullNumArrResult).to.be.an('string', 'should return a string');
+        expect(fullNumArrResult).to.be.equal('1,2', 'should return a joined string');
+      }));
 
       moduleSuite.addSuite(apiSuite);
 
