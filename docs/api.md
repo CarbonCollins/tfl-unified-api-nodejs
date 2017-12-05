@@ -34,6 +34,7 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
         * [~getLinesByModes(modes)](#module_TfLUnified/api.Line..getLinesByModes) ⇒ <code>Array.&lt;Object&gt;</code>
         * [~getLinesByServiceTypes(types)](#module_TfLUnified/api.Line..getLinesByServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
         * [~getLinesByIdsAndServiceTypes(ids, types)](#module_TfLUnified/api.Line..getLinesByIdsAndServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
+        * [~getLinesByModesAndServiceTypes(modess, types)](#module_TfLUnified/api.Line..getLinesByModesAndServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
     * [.TfLUnified](#module_TfLUnified/api.TfLUnified)
         * [new TfLUnified(options)](#new_module_TfLUnified/api.TfLUnified_new)
 
@@ -56,6 +57,7 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
     * [~getLinesByModes(modes)](#module_TfLUnified/api.Line..getLinesByModes) ⇒ <code>Array.&lt;Object&gt;</code>
     * [~getLinesByServiceTypes(types)](#module_TfLUnified/api.Line..getLinesByServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
     * [~getLinesByIdsAndServiceTypes(ids, types)](#module_TfLUnified/api.Line..getLinesByIdsAndServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [~getLinesByModesAndServiceTypes(modess, types)](#module_TfLUnified/api.Line..getLinesByModesAndServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
 
 
 * * *
@@ -167,7 +169,7 @@ Gets information about the lines supplied by modes [GET]
 <a name="module_TfLUnified/api.Line..getLinesByIdsAndServiceTypes"></a>
 
 #### Line~getLinesByIdsAndServiceTypes(ids, types) ⇒ <code>Array.&lt;Object&gt;</code>
-Gets information about the lines supplied by modes [GET]
+Gets information about the lines supplied by ids and service types [GET]
 
 **Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
 **Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
@@ -180,6 +182,27 @@ Gets information about the lines supplied by modes [GET]
 | Param | Type | Description |
 | --- | --- | --- |
 | ids | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array of line ids e.g. circle, northern, ect |
+| types | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array of line service types e.g. regular, night, ect |
+
+
+* * *
+
+<a name="module_TfLUnified/api.Line..getLinesByModesAndServiceTypes"></a>
+
+#### Line~getLinesByModesAndServiceTypes(modess, types) ⇒ <code>Array.&lt;Object&gt;</code>
+Gets information about the lines supplied by modes and service types [GET]
+
+**Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
+**Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
+**See**
+
+- [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_RouteByMode](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_RouteByMode)
+- {module:TfLUnified/api.Line~listServiceTypes}
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| modess | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array of line modes e.g. tube, bus, ect |
 | types | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array of line service types e.g. regular, night, ect |
 
 
