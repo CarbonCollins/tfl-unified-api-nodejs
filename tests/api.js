@@ -6,6 +6,7 @@ const jsdocx = require('jsdoc-x');
 const rewire = require('rewire');
 const http = require('http');
 const qs = require('querystring');
+const moment = require('moment');
 
 const Test = Mocha.Test;
 const Suite = Mocha.Suite;
@@ -42,6 +43,8 @@ function generateArgsFromParams(params) {
         }
       } else {
         switch(param) {
+          case 'DateRange':
+            return { startDate: moment(), endDate: moment().add(1, 'day') };
           case 'String':
             return 'test1';
           case 'Number':
@@ -180,19 +183,30 @@ module.exports = () => {
         apiSuite.addSuite(moduleAPISuite);
       }
 
-      moduleSuite.addTest(new Test('parseParameters functional', () => {
+      moduleSuite.addTest(new Test('parseParams functional', () => {
         const MUT = rewire('../lib/main');
-        const parseParameters = MUT.__get__('parseParameters');
-        expect(parseParameters).to.be.an('function', 'parseParameters is missing from main.js');
-        const emptyResponse = parseParameters();
-        const blankResponse = parseParameters({});
-        const popResponse = parseParameters({ testParm: true });
-        expect(emptyResponse).to.be.an('object', 'parseParameters should return an object (param null)');
-        expect(emptyResponse).to.be.deep.equal({}, 'parseParameters should return an empty object');
-        expect(blankResponse).to.be.an('object', 'parseParameters should return an object (param {})');
-        expect(blankResponse).to.be.deep.equal({}, 'parseParameters should return an empty object');
-        expect(popResponse).to.be.an('object', 'parseParameters should return an object (param { testParm: true })');
-        expect(popResponse).to.be.deep.equal({ testParm: true }, 'parseParameters should return a populated object');
+        const TfLUnified = MUT.__get__('TfLUnified');
+        expect(TfLUnified).to.be.an('function', 'TfLUnified class constructor should be present');
+        const CUT = new TfLUnified({ app_key: serverValidKey, app_id: serverValidId, host: serverHost, port: serverPort, useHttp: true });
+        expect(CUT).to.be.an('object', 'TfLUnified class should have been constructed');
+
+        expect(CUT.parseParams).to.be.an('function');
+        const emptyResult = CUT.parseParams();
+        const emptyObjResult = CUT.parseParams({});
+        const fullObjBoolResult = CUT.parseParams({ test: true });
+        const fullObjStringResult = CUT.parseParams({ test: 'test1' });
+        const fullObjArrResult = CUT.parseParams({ test: ['test1','test2'] });
+
+        expect(emptyResult).to.be.an('object', 'should return an object');
+        expect(emptyResult).to.be.deep.equal({}, 'should return an empty object');
+        expect(emptyObjResult).to.be.an('object', 'should return an object');
+        expect(emptyObjResult).to.be.deep.equal({}, 'should return an empty object');
+        expect(fullObjBoolResult).to.be.an('object', 'should return an object');
+        expect(fullObjBoolResult).to.be.deep.equal({ test: 'true' }, 'should return a populated object');
+        expect(fullObjStringResult).to.be.an('object', 'should return an object');
+        expect(fullObjStringResult).to.be.deep.equal({ test: 'test1' }, 'should return a populated object');
+        expect(fullObjArrResult).to.be.an('object', 'should return an object');
+        expect(fullObjArrResult).to.be.deep.equal({ test: 'test1,test2' }, 'should return a populated object');
       }));
 
       moduleSuite.addTest(new Test('sendRequest functional', (done) => {

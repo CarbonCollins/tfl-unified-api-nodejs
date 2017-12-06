@@ -15,6 +15,9 @@
 <dt><a href="#MetaSeverity">MetaSeverity</a> : <code>Object</code></dt>
 <dd><p>a response object for detailing TfL severity codes</p>
 </dd>
+<dt><a href="#DateRanges">DateRanges</a> : <code>Object</code></dt>
+<dd><p>an object containing a start and end date for date range serches</p>
+</dd>
 </dl>
 
 <a name="module_TfLUnified/api"></a>
@@ -30,11 +33,10 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
         * [~listSeverityCodes()](#module_TfLUnified/api.Line..listSeverityCodes) ⇒ [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity)
         * [~listDisruptionCategories()](#module_TfLUnified/api.Line..listDisruptionCategories) ⇒ <code>Array.&lt;String&gt;</code>
         * [~listServiceTypes()](#module_TfLUnified/api.Line..listServiceTypes) ⇒ <code>Array.&lt;String&gt;</code>
-        * [~getLinesById(ids)](#module_TfLUnified/api.Line..getLinesById) ⇒ <code>Array.&lt;Object&gt;</code>
-        * [~getLinesByModes(modes)](#module_TfLUnified/api.Line..getLinesByModes) ⇒ <code>Array.&lt;Object&gt;</code>
-        * [~getLinesByServiceTypes(types)](#module_TfLUnified/api.Line..getLinesByServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
-        * [~getLinesByIdsAndServiceTypes(ids, types)](#module_TfLUnified/api.Line..getLinesByIdsAndServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
-        * [~getLinesByModesAndServiceTypes(modess, types)](#module_TfLUnified/api.Line..getLinesByModesAndServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
+        * [~getRoutesById(ids, [options])](#module_TfLUnified/api.Line..getRoutesById) ⇒ <code>Array.&lt;Object&gt;</code>
+        * [~getRoutesByMode(modes, [options])](#module_TfLUnified/api.Line..getRoutesByMode) ⇒ <code>Array.&lt;Object&gt;</code>
+        * [~getRoutesByServiceType(types, [options])](#module_TfLUnified/api.Line..getRoutesByServiceType) ⇒ <code>Array.&lt;Object&gt;</code>
+        * [~getLineStatusById(types, [options])](#module_TfLUnified/api.Line..getLineStatusById) ⇒ <code>Array.&lt;Object&gt;</code>
     * [.TfLUnified](#module_TfLUnified/api.TfLUnified)
         * [new TfLUnified(options)](#new_module_TfLUnified/api.TfLUnified_new)
 
@@ -53,11 +55,10 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
     * [~listSeverityCodes()](#module_TfLUnified/api.Line..listSeverityCodes) ⇒ [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity)
     * [~listDisruptionCategories()](#module_TfLUnified/api.Line..listDisruptionCategories) ⇒ <code>Array.&lt;String&gt;</code>
     * [~listServiceTypes()](#module_TfLUnified/api.Line..listServiceTypes) ⇒ <code>Array.&lt;String&gt;</code>
-    * [~getLinesById(ids)](#module_TfLUnified/api.Line..getLinesById) ⇒ <code>Array.&lt;Object&gt;</code>
-    * [~getLinesByModes(modes)](#module_TfLUnified/api.Line..getLinesByModes) ⇒ <code>Array.&lt;Object&gt;</code>
-    * [~getLinesByServiceTypes(types)](#module_TfLUnified/api.Line..getLinesByServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
-    * [~getLinesByIdsAndServiceTypes(ids, types)](#module_TfLUnified/api.Line..getLinesByIdsAndServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
-    * [~getLinesByModesAndServiceTypes(modess, types)](#module_TfLUnified/api.Line..getLinesByModesAndServiceTypes) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [~getRoutesById(ids, [options])](#module_TfLUnified/api.Line..getRoutesById) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [~getRoutesByMode(modes, [options])](#module_TfLUnified/api.Line..getRoutesByMode) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [~getRoutesByServiceType(types, [options])](#module_TfLUnified/api.Line..getRoutesByServiceType) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [~getLineStatusById(types, [options])](#module_TfLUnified/api.Line..getLineStatusById) ⇒ <code>Array.&lt;Object&gt;</code>
 
 
 * * *
@@ -106,30 +107,35 @@ Lists all of the valid line service types [GET]
 
 * * *
 
-<a name="module_TfLUnified/api.Line..getLinesById"></a>
+<a name="module_TfLUnified/api.Line..getRoutesById"></a>
 
-#### Line~getLinesById(ids) ⇒ <code>Array.&lt;Object&gt;</code>
-Gets information about the lines supplied by ids [GET]
+#### Line~getRoutesById(ids, [options]) ⇒ <code>Array.&lt;Object&gt;</code>
+Gets information about the Routes supplied by ids [GET]
 
 **Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
 **Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
 **See**
 
 - [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_Get](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_Get)
-- {Pmodule:TfLUnified/api.Line~getLinesById}
+- [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_LineRoutesByIds](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_LineRoutesByIds)
+- [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_RouteSequence](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_RouteSequence)
 
 
 | Param | Type | Description |
 | --- | --- | --- |
 | ids | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array of line ids e.g. circle, northern, ect |
+| [options] | <code>Object</code> | optional parameters to be added to the request |
+| [options.serviceTypes] | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array or string of line service types e.g. regular, night, ect |
+| [options.direction] | <code>String</code> | a direction in which to sequence the stations can be either: inbound, outbound, all |
+| [options.excludeCrowd] | <code>Boolean</code> | should crowd line disruptions be exlcuded from the request |
 
 
 * * *
 
-<a name="module_TfLUnified/api.Line..getLinesByModes"></a>
+<a name="module_TfLUnified/api.Line..getRoutesByMode"></a>
 
-#### Line~getLinesByModes(modes) ⇒ <code>Array.&lt;Object&gt;</code>
-Gets information about the lines supplied by modes [GET]
+#### Line~getRoutesByMode(modes, [options]) ⇒ <code>Array.&lt;Object&gt;</code>
+Gets information about the Routes supplied by modes [GET]
 
 **Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
 **Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
@@ -142,14 +148,16 @@ Gets information about the lines supplied by modes [GET]
 | Param | Type | Description |
 | --- | --- | --- |
 | modes | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array of line modes e.g. tube, bus, ect |
+| [options] | <code>Object</code> | optional parameters to be added to the request |
+| [options.serviceTypes] | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array or string of line service types e.g. regular, night, ect |
 
 
 * * *
 
-<a name="module_TfLUnified/api.Line..getLinesByServiceTypes"></a>
+<a name="module_TfLUnified/api.Line..getRoutesByServiceType"></a>
 
-#### Line~getLinesByServiceTypes(types) ⇒ <code>Array.&lt;Object&gt;</code>
-Gets information about the lines supplied by modes [GET]
+#### Line~getRoutesByServiceType(types, [options]) ⇒ <code>Array.&lt;Object&gt;</code>
+Gets information about the Routes supplied by modes [GET]
 
 **Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
 **Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
@@ -162,48 +170,26 @@ Gets information about the lines supplied by modes [GET]
 | Param | Type | Description |
 | --- | --- | --- |
 | types | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array of line service types e.g. regular, night, ect |
+| [options] | <code>Object</code> | optional parameters to be added to the request |
 
 
 * * *
 
-<a name="module_TfLUnified/api.Line..getLinesByIdsAndServiceTypes"></a>
+<a name="module_TfLUnified/api.Line..getLineStatusById"></a>
 
-#### Line~getLinesByIdsAndServiceTypes(ids, types) ⇒ <code>Array.&lt;Object&gt;</code>
-Gets information about the lines supplied by ids and service types [GET]
-
-**Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
-**Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
-**See**
-
-- [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_Route](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_Route)
-- {module:TfLUnified/api.Line~listServiceTypes}
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| ids | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array of line ids e.g. circle, northern, ect |
-| types | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array of line service types e.g. regular, night, ect |
-
-
-* * *
-
-<a name="module_TfLUnified/api.Line..getLinesByModesAndServiceTypes"></a>
-
-#### Line~getLinesByModesAndServiceTypes(modess, types) ⇒ <code>Array.&lt;Object&gt;</code>
-Gets information about the lines supplied by modes and service types [GET]
+#### Line~getLineStatusById(types, [options]) ⇒ <code>Array.&lt;Object&gt;</code>
+Gets line status information using a lines id [GET]
 
 **Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
 **Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
-**See**
-
-- [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_RouteByMode](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_RouteByMode)
-- {module:TfLUnified/api.Line~listServiceTypes}
-
+**See**: [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_Status](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_Status)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| modess | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array of line modes e.g. tube, bus, ect |
-| types | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array of line service types e.g. regular, night, ect |
+| types | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array or a single string of line ids e.g. circle, northern, ect |
+| [options] | <code>Object</code> | optional parameters to be added to the request |
+| [options.detail] | <code>Boolean</code> | include details of any disruptions |
+| [options.dateRange] | <code>DateRange</code> | an object containing date ranges for getting line status for |
 
 
 * * *
@@ -257,6 +243,22 @@ a response object for detailing TfL severity codes
 | modeName | <code>String</code> | 
 | severityLevel | <code>Number</code> | 
 | description | <code>String</code> | 
+
+
+* * *
+
+<a name="DateRanges"></a>
+
+## DateRanges : <code>Object</code>
+an object containing a start and end date for date range serches
+
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| startDate | <code>Moment</code> \| <code>Date</code> \| <code>String</code> | a moment, native js date or ISO 8601 TZ time string |
+| endDate | <code>Moment</code> \| <code>Date</code> \| <code>String</code> | a moment, native js date or ISO 8601 TZ time string |
 
 
 * * *
