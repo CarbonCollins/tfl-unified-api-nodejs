@@ -16,6 +16,9 @@ matrix:
   - node_js: '8'
     env:
     - UNIT=test
+  - node_js: '9'
+    env:
+    - UNIT=test
   - node_js: node
     env:
     - UNIT=test
