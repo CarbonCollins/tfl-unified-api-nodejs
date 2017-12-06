@@ -189,7 +189,7 @@ Gets line status information using a lines id [GET]
 | types | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array or a single string of line ids e.g. circle, northern, ect |
 | [options] | <code>Object</code> | optional parameters to be added to the request |
 | [options.detail] | <code>Boolean</code> | include details of any disruptions |
-| [options.dateRange] | <code>DateRange</code> | an object containing date ranges for getting line status for |
+| [options.dateRange] | [<code>DateRanges</code>](#DateRanges) | an object containing date ranges for getting line status for |
 
 
 * * *
