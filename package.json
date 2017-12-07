@@ -7,7 +7,7 @@
         "test": "istanbul cover ./tests/test.js",
         "test:harmony": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- ./tests/test.js"
     },
-    "author": "Steven Collins",
+    "author": "CarbonCollins",
     "license": "MIT",
     "devDependencies": {
         "babel-eslint": "^8.0.2",
@@ -29,5 +29,13 @@
         "moment": "^2.19.3",
         "request": "^2.83.0",
         "request-promise-native": "^1.0.5"
+    },
+    "readmeFilename": "README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CarbonCollins/tfl-unified-api-nodejs"
+    },
+    "bugs": {
+        "url": "https://github.com/CarbonCollins/tfl-unified-api-nodejs/issues"
     }
 }
