@@ -196,6 +196,8 @@ module.exports = () => {
         const fullObjBoolResult = CUT.parseParams({ test: true });
         const fullObjStringResult = CUT.parseParams({ test: 'test1' });
         const fullObjArrResult = CUT.parseParams({ test: ['test1','test2'] });
+        const fullMomentResult = CUT.parseParams({ test: moment('2017-12-07T07:02:22.000Z') });
+        const fullDateResult = CUT.parseParams({ test: new Date('2017-12-07T07:02:22.000Z') });
 
         expect(emptyResult).to.be.an('object', 'should return an object');
         expect(emptyResult).to.be.deep.equal({}, 'should return an empty object');
@@ -207,6 +209,10 @@ module.exports = () => {
         expect(fullObjStringResult).to.be.deep.equal({ test: 'test1' }, 'should return a populated object');
         expect(fullObjArrResult).to.be.an('object', 'should return an object');
         expect(fullObjArrResult).to.be.deep.equal({ test: 'test1,test2' }, 'should return a populated object');
+        expect(fullMomentResult).to.be.an('object', 'should return an object');
+        expect(fullMomentResult).to.be.deep.equal({ test: '2017-12-07T07:02:22.000Z' }, 'should return a populated object');
+        expect(fullDateResult).to.be.an('object', 'should return an object');
+        expect(fullDateResult).to.be.deep.equal({ test: '2017-12-07T07:02:22.000Z' }, 'should return a populated object');
       }));
 
       moduleSuite.addTest(new Test('sendRequest functional', (done) => {
