@@ -36,7 +36,8 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
         * [~getRoutesById(ids, [options])](#module_TfLUnified/api.Line..getRoutesById) ⇒ <code>Array.&lt;Object&gt;</code>
         * [~getRoutesByMode(modes, [options])](#module_TfLUnified/api.Line..getRoutesByMode) ⇒ <code>Array.&lt;Object&gt;</code>
         * [~getRoutesByServiceType(types, [options])](#module_TfLUnified/api.Line..getRoutesByServiceType) ⇒ <code>Array.&lt;Object&gt;</code>
-        * [~getLineStatusById(types, [options])](#module_TfLUnified/api.Line..getLineStatusById) ⇒ <code>Array.&lt;Object&gt;</code>
+        * [~getLineStatusById(ids, [options])](#module_TfLUnified/api.Line..getLineStatusById) ⇒ <code>Array.&lt;Object&gt;</code>
+        * [~getLineStatusByMode(modes, [options])](#module_TfLUnified/api.Line..getLineStatusByMode) ⇒ <code>Array.&lt;Object&gt;</code>
     * [.TfLUnified](#module_TfLUnified/api.TfLUnified)
         * [new TfLUnified(options)](#new_module_TfLUnified/api.TfLUnified_new)
 
@@ -58,7 +59,8 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
     * [~getRoutesById(ids, [options])](#module_TfLUnified/api.Line..getRoutesById) ⇒ <code>Array.&lt;Object&gt;</code>
     * [~getRoutesByMode(modes, [options])](#module_TfLUnified/api.Line..getRoutesByMode) ⇒ <code>Array.&lt;Object&gt;</code>
     * [~getRoutesByServiceType(types, [options])](#module_TfLUnified/api.Line..getRoutesByServiceType) ⇒ <code>Array.&lt;Object&gt;</code>
-    * [~getLineStatusById(types, [options])](#module_TfLUnified/api.Line..getLineStatusById) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [~getLineStatusById(ids, [options])](#module_TfLUnified/api.Line..getLineStatusById) ⇒ <code>Array.&lt;Object&gt;</code>
+    * [~getLineStatusByMode(modes, [options])](#module_TfLUnified/api.Line..getLineStatusByMode) ⇒ <code>Array.&lt;Object&gt;</code>
 
 
 * * *
@@ -177,7 +179,7 @@ Gets information about the Routes supplied by modes [GET]
 
 <a name="module_TfLUnified/api.Line..getLineStatusById"></a>
 
-#### Line~getLineStatusById(types, [options]) ⇒ <code>Array.&lt;Object&gt;</code>
+#### Line~getLineStatusById(ids, [options]) ⇒ <code>Array.&lt;Object&gt;</code>
 Gets line status information using a lines id [GET]
 
 **Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
@@ -186,10 +188,31 @@ Gets line status information using a lines id [GET]
 
 | Param | Type | Description |
 | --- | --- | --- |
-| types | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array or a single string of line ids e.g. circle, northern, ect |
+| ids | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array or a single string of line ids e.g. circle, northern, ect |
 | [options] | <code>Object</code> | optional parameters to be added to the request |
 | [options.detail] | <code>Boolean</code> | include details of any disruptions |
 | [options.dateRange] | [<code>DateRanges</code>](#DateRanges) | an object containing date ranges for getting line status for |
+
+
+* * *
+
+<a name="module_TfLUnified/api.Line..getLineStatusByMode"></a>
+
+#### Line~getLineStatusByMode(modes, [options]) ⇒ <code>Array.&lt;Object&gt;</code>
+Gets line status information using a lines mode [GET]
+
+**Kind**: inner method of [<code>Line</code>](#module_TfLUnified/api.Line)  
+**Returns**: <code>Array.&lt;Object&gt;</code> - an array of specified line information  
+**See**
+
+- [https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_StatusByMode](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/Line/Line_StatusByMode)
+- {module:TfLUnified/api.Line~listValidModes}
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| modes | <code>Array.&lt;String&gt;</code> \| <code>String</code> | An array or a single string of line modes e.g. tube, bus, ect |
+| [options] | <code>Object</code> | optional parameters to be added to the request |
 
 
 * * *
