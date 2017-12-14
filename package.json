@@ -37,5 +37,8 @@
     },
     "bugs": {
         "url": "https://github.com/CarbonCollins/tfl-unified-api-nodejs/issues"
+    },
+    "engines": {
+        "node" : ">=6.0"
     }
 }
