@@ -43,6 +43,8 @@ function generateArgsFromParams(params) {
         }
       } else {
         switch(param) {
+          case 'LineId':
+            return 'bakerloo';
           case 'DateRange':
             return { startDate: moment(), endDate: moment().add(1, 'day') };
           case 'String':
@@ -153,28 +155,41 @@ module.exports = () => {
             expect(jsdocDetails.moduleNames[i].docs[j].description).to.not.be.empty;
           }));
 
-          moduleAPIFunctionSuite.addTest(new Test('Function has see link to https://api.tfl.gov.uk/swagger/ui/index.html', () => {
+          moduleAPIFunctionSuite.addTest(new Test('Function has see link to tfl.gov.uk', () => {
             expect(jsdocDetails.moduleNames[i].docs[j].see).to.not.be.undefined;
             expect(jsdocDetails.moduleNames[i].docs[j].see).to.be.an('array');
             expect(jsdocDetails.moduleNames[i].docs[j].see).to.have.lengthOf.at.least(1);
-            expect(jsdocDetails.moduleNames[i].docs[j].see).to.include.to.match(/{@link https:\/\/api\.tfl\.gov.uk\/swagger\/ui\/index\.html/);
+            expect(jsdocDetails.moduleNames[i].docs[j].see).to.include.to.match(/{@link https:\/\/api\.tfl\.gov.uk\/swagger\/ui\/index\.html|{@link http:\/\/content\.tfl\.gov\.uk\/tfl-colour-standards-issue04\.pdf/);
           }));
 
-          moduleAPIFunctionSuite.addTest(new Test('Function calls API endpoint', (done) => {
-            const MUTT = new TfLUnified({ app_key: serverValidKey, app_id: serverValidId, host: serverHost, port: serverPort, useHttp: true });
-            serverEmitter.once('receivedRequest', (payload) => {
-              expect(payload.params).to.include.keys(['app_id', 'app_key']);
-              expect(payload.params.app_key).to.be.equal(serverValidKey);
-              expect(payload.params.app_id).to.be.equal(serverValidId);
-              expect(payload.req.headers).to.deep.include({ accept: 'application/json' });
-              expect(payload.req.method).to.be.equal('GET');
+          if (jsdocDetails.moduleNames[i].docs[j].description.includes('[GET]')) {
+            moduleAPIFunctionSuite.addTest(new Test('Function calls API endpoint', (done) => {
+              const MUTT = new TfLUnified({ app_key: serverValidKey, app_id: serverValidId, host: serverHost, port: serverPort, useHttp: true });
+              serverEmitter.once('receivedRequest', (payload) => {
+                expect(payload.params).to.include.keys(['app_id', 'app_key']);
+                expect(payload.params.app_key).to.be.equal(serverValidKey);
+                expect(payload.params.app_id).to.be.equal(serverValidId);
+                expect(payload.req.headers).to.deep.include({ accept: 'application/json' });
+                expect(payload.req.method).to.be.equal('GET');
+                done();
+              });
+
+              MUTT[jsdocDetails.moduleNames[i].docs[j].name]
+                .apply(MUTT, generateArgsFromParams(jsdocDetails.moduleNames[i].docs[j].params))
+                .catch((err) => { console.error(err); done(err); });
+            }));
+          } else {
+            moduleAPIFunctionSuite.addTest(new Test('Function can be called', (done) => {
+              const MUTT = new TfLUnified({ app_key: serverValidKey, app_id: serverValidId, host: serverHost, port: serverPort, useHttp: true });
+
+              const funcResult = MUTT[jsdocDetails.moduleNames[i].docs[j].name]
+                .apply(MUTT, generateArgsFromParams(jsdocDetails.moduleNames[i].docs[j].params));
+
+              expect(funcResult).to.not.be.equal(undefined);
+
               done();
-            });
-
-            MUTT[jsdocDetails.moduleNames[i].docs[j].name]
-              .apply(MUTT, generateArgsFromParams(jsdocDetails.moduleNames[i].docs[j].params))
-              .catch((err) => { console.error(err); done(err); });
-          }));
+            }));
+          }
 
           moduleAPISuite.addSuite(moduleAPIFunctionSuite);
 

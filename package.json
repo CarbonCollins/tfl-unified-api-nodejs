@@ -1,6 +1,6 @@
 {
     "name": "tfl-unified-api",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "An abstraction layer for accessing the TfL Unified API",
     "main": "./index.js",
     "scripts": {

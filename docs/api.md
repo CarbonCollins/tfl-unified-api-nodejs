@@ -314,7 +314,7 @@ an object containing various colour codes
 | cmyk.m | <code>Number</code> | the majenta numerical amount |
 | cmyk.y | <code>Number</code> | the yellow numerical amount |
 | cmyk.k | <code>Number</code> | the key numerical amount |
-| rgb | <code>RGB</code> | the rgb colour code as an rgb() object |
+| rgb | <code>RGB</code> | the rgb colour code as an { r: ) object |
 | hex | <code>String</code> | the hex colour code |
 
 
