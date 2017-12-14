@@ -9,6 +9,9 @@
 ## Typedefs
 
 <dl>
+<dt><a href="#ColorObj">ColorObj</a> : <code>Object</code></dt>
+<dd><p>an object containing various colour codes</p>
+</dd>
 <dt><a href="#MetaMode">MetaMode</a> : <code>Object</code></dt>
 <dd><p>a response object for detailing TfL transport Meta Modes</p>
 </dd>
@@ -28,6 +31,11 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
 **See**: [https://api.tfl.gov.uk/](https://api.tfl.gov.uk/)  
 
 * [TfLUnified/api](#module_TfLUnified/api)
+    * [.Color](#module_TfLUnified/api.Color) ⇐ [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)
+        * [~getLineColor()](#module_TfLUnified/api.Color..getLineColor) ⇒ [<code>ColorObj</code>](#ColorObj)
+        * [~getLineCMYKColor()](#module_TfLUnified/api.Color..getLineCMYKColor) ⇒ <code>Objct</code>
+        * [~getLineRGBColor()](#module_TfLUnified/api.Color..getLineRGBColor) ⇒ <code>RGB</code>
+        * [~getLineHexColor()](#module_TfLUnified/api.Color..getLineHexColor) ⇒ <code>String</code>
     * [.Line](#module_TfLUnified/api.Line) ⇐ [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)
         * [~listValidModes()](#module_TfLUnified/api.Line..listValidModes) ⇒ [<code>Array.&lt;MetaMode&gt;</code>](#MetaMode)
         * [~listSeverityCodes()](#module_TfLUnified/api.Line..listSeverityCodes) ⇒ [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity)
@@ -41,6 +49,62 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
     * [.TfLUnified](#module_TfLUnified/api.TfLUnified)
         * [new TfLUnified(options)](#new_module_TfLUnified/api.TfLUnified_new)
 
+
+* * *
+
+<a name="module_TfLUnified/api.Color"></a>
+
+### TfLUnified/api.Color ⇐ [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)
+**Kind**: static class of [<code>TfLUnified/api</code>](#module_TfLUnified/api)  
+**Extends**: [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)  
+**See**: [https://api.tfl.gov.uk](https://api.tfl.gov.uk)  
+
+* [.Color](#module_TfLUnified/api.Color) ⇐ [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)
+    * [~getLineColor()](#module_TfLUnified/api.Color..getLineColor) ⇒ [<code>ColorObj</code>](#ColorObj)
+    * [~getLineCMYKColor()](#module_TfLUnified/api.Color..getLineCMYKColor) ⇒ <code>Objct</code>
+    * [~getLineRGBColor()](#module_TfLUnified/api.Color..getLineRGBColor) ⇒ <code>RGB</code>
+    * [~getLineHexColor()](#module_TfLUnified/api.Color..getLineHexColor) ⇒ <code>String</code>
+
+
+* * *
+
+<a name="module_TfLUnified/api.Color..getLineColor"></a>
+
+#### Color~getLineColor() ⇒ [<code>ColorObj</code>](#ColorObj)
+gets the color of a line from its associated ID
+
+**Kind**: inner method of [<code>Color</code>](#module_TfLUnified/api.Color)  
+**Returns**: [<code>ColorObj</code>](#ColorObj) - an object containing various colour codes in different formats  
+
+* * *
+
+<a name="module_TfLUnified/api.Color..getLineCMYKColor"></a>
+
+#### Color~getLineCMYKColor() ⇒ <code>Objct</code>
+gets the cmyk color of a line from its associated ID
+
+**Kind**: inner method of [<code>Color</code>](#module_TfLUnified/api.Color)  
+**Returns**: <code>Objct</code> - an object containing the cmyk colour values for this line  
+
+* * *
+
+<a name="module_TfLUnified/api.Color..getLineRGBColor"></a>
+
+#### Color~getLineRGBColor() ⇒ <code>RGB</code>
+gets the rgb color of a line from its associated ID
+
+**Kind**: inner method of [<code>Color</code>](#module_TfLUnified/api.Color)  
+**Returns**: <code>RGB</code> - a rgb colour code for this line  
+
+* * *
+
+<a name="module_TfLUnified/api.Color..getLineHexColor"></a>
+
+#### Color~getLineHexColor() ⇒ <code>String</code>
+gets the hex color of a line from its associated ID
+
+**Kind**: inner method of [<code>Color</code>](#module_TfLUnified/api.Color)  
+**Returns**: <code>String</code> - a hex colour code for this line  
 
 * * *
 
@@ -231,6 +295,27 @@ Gets line status information using a lines mode [GET]
 | Param | Type |
 | --- | --- |
 | options | <code>Object</code> | 
+
+
+* * *
+
+<a name="ColorObj"></a>
+
+## ColorObj : <code>Object</code>
+an object containing various colour codes
+
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| cmyk | <code>Object</code> | a cymk colour value |
+| cmyk.c | <code>Number</code> | the cyan numerical amount |
+| cmyk.m | <code>Number</code> | the majenta numerical amount |
+| cmyk.y | <code>Number</code> | the yellow numerical amount |
+| cmyk.k | <code>Number</code> | the key numerical amount |
+| rgb | <code>RGB</code> | the rgb colour code as an rgb() object |
+| hex | <code>String</code> | the hex colour code |
 
 
 * * *
