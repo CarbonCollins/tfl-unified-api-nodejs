@@ -4,8 +4,7 @@
     "description": "An abstraction layer for accessing the TfL Unified API",
     "main": "./index.js",
     "scripts": {
-        "test": "istanbul cover ./tests/test.js",
-        "test:harmony": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- ./tests/test.js"
+        "test": "istanbul cover ./tests/test.js"
     },
     "author": "CarbonCollins",
     "license": "MIT",
