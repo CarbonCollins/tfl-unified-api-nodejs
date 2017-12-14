@@ -32,10 +32,10 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
 
 * [TfLUnified/api](#module_TfLUnified/api)
     * [.Color](#module_TfLUnified/api.Color) ⇐ [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)
-        * [~getLineColor()](#module_TfLUnified/api.Color..getLineColor) ⇒ [<code>ColorObj</code>](#ColorObj)
-        * [~getLineCMYKColor()](#module_TfLUnified/api.Color..getLineCMYKColor) ⇒ <code>Objct</code>
-        * [~getLineRGBColor()](#module_TfLUnified/api.Color..getLineRGBColor) ⇒ <code>RGB</code>
-        * [~getLineHexColor()](#module_TfLUnified/api.Color..getLineHexColor) ⇒ <code>String</code>
+        * [~getLineColor(lineId)](#module_TfLUnified/api.Color..getLineColor) ⇒ [<code>ColorObj</code>](#ColorObj)
+        * [~getLineCMYKColor(lineId)](#module_TfLUnified/api.Color..getLineCMYKColor) ⇒ <code>Objct</code>
+        * [~getLineRGBColor(lineId)](#module_TfLUnified/api.Color..getLineRGBColor) ⇒ <code>Object</code>
+        * [~getLineHexColor(lineId)](#module_TfLUnified/api.Color..getLineHexColor) ⇒ <code>String</code>
     * [.Line](#module_TfLUnified/api.Line) ⇐ [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)
         * [~listValidModes()](#module_TfLUnified/api.Line..listValidModes) ⇒ [<code>Array.&lt;MetaMode&gt;</code>](#MetaMode)
         * [~listSeverityCodes()](#module_TfLUnified/api.Line..listSeverityCodes) ⇒ [<code>Array.&lt;MetaSeverity&gt;</code>](#MetaSeverity)
@@ -57,54 +57,78 @@ The TfLUnified/api module acts as an abstracton layer for accessing the various 
 ### TfLUnified/api.Color ⇐ [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)
 **Kind**: static class of [<code>TfLUnified/api</code>](#module_TfLUnified/api)  
 **Extends**: [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)  
-**See**: [https://api.tfl.gov.uk](https://api.tfl.gov.uk)  
+**See**: [http://content.tfl.gov.uk/tfl-colour-standards-issue04.pdf](http://content.tfl.gov.uk/tfl-colour-standards-issue04.pdf)  
 
 * [.Color](#module_TfLUnified/api.Color) ⇐ [<code>TfLUnified</code>](#module_TfLUnified/api.TfLUnified)
-    * [~getLineColor()](#module_TfLUnified/api.Color..getLineColor) ⇒ [<code>ColorObj</code>](#ColorObj)
-    * [~getLineCMYKColor()](#module_TfLUnified/api.Color..getLineCMYKColor) ⇒ <code>Objct</code>
-    * [~getLineRGBColor()](#module_TfLUnified/api.Color..getLineRGBColor) ⇒ <code>RGB</code>
-    * [~getLineHexColor()](#module_TfLUnified/api.Color..getLineHexColor) ⇒ <code>String</code>
+    * [~getLineColor(lineId)](#module_TfLUnified/api.Color..getLineColor) ⇒ [<code>ColorObj</code>](#ColorObj)
+    * [~getLineCMYKColor(lineId)](#module_TfLUnified/api.Color..getLineCMYKColor) ⇒ <code>Objct</code>
+    * [~getLineRGBColor(lineId)](#module_TfLUnified/api.Color..getLineRGBColor) ⇒ <code>Object</code>
+    * [~getLineHexColor(lineId)](#module_TfLUnified/api.Color..getLineHexColor) ⇒ <code>String</code>
 
 
 * * *
 
 <a name="module_TfLUnified/api.Color..getLineColor"></a>
 
-#### Color~getLineColor() ⇒ [<code>ColorObj</code>](#ColorObj)
+#### Color~getLineColor(lineId) ⇒ [<code>ColorObj</code>](#ColorObj)
 gets the color of a line from its associated ID
 
 **Kind**: inner method of [<code>Color</code>](#module_TfLUnified/api.Color)  
 **Returns**: [<code>ColorObj</code>](#ColorObj) - an object containing various colour codes in different formats  
+**See**: [http://content.tfl.gov.uk/tfl-colour-standards-issue04.pdf](http://content.tfl.gov.uk/tfl-colour-standards-issue04.pdf)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| lineId | <code>LineId</code> \| <code>String</code> | a stirng containing the line id e.g. bakerloo, circle, ect |
+
 
 * * *
 
 <a name="module_TfLUnified/api.Color..getLineCMYKColor"></a>
 
-#### Color~getLineCMYKColor() ⇒ <code>Objct</code>
+#### Color~getLineCMYKColor(lineId) ⇒ <code>Objct</code>
 gets the cmyk color of a line from its associated ID
 
 **Kind**: inner method of [<code>Color</code>](#module_TfLUnified/api.Color)  
 **Returns**: <code>Objct</code> - an object containing the cmyk colour values for this line  
+**See**: [http://content.tfl.gov.uk/tfl-colour-standards-issue04.pdf](http://content.tfl.gov.uk/tfl-colour-standards-issue04.pdf)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| lineId | <code>LineId</code> \| <code>String</code> | a stirng containing the line id e.g. bakerloo, circle, ect |
+
 
 * * *
 
 <a name="module_TfLUnified/api.Color..getLineRGBColor"></a>
 
-#### Color~getLineRGBColor() ⇒ <code>RGB</code>
+#### Color~getLineRGBColor(lineId) ⇒ <code>Object</code>
 gets the rgb color of a line from its associated ID
 
 **Kind**: inner method of [<code>Color</code>](#module_TfLUnified/api.Color)  
-**Returns**: <code>RGB</code> - a rgb colour code for this line  
+**Returns**: <code>Object</code> - a rgb colour code for this line  
+**See**: [http://content.tfl.gov.uk/tfl-colour-standards-issue04.pdf](http://content.tfl.gov.uk/tfl-colour-standards-issue04.pdf)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| lineId | <code>LineId</code> \| <code>String</code> | a stirng containing the line id e.g. bakerloo, circle, ect |
+
 
 * * *
 
 <a name="module_TfLUnified/api.Color..getLineHexColor"></a>
 
-#### Color~getLineHexColor() ⇒ <code>String</code>
+#### Color~getLineHexColor(lineId) ⇒ <code>String</code>
 gets the hex color of a line from its associated ID
 
 **Kind**: inner method of [<code>Color</code>](#module_TfLUnified/api.Color)  
 **Returns**: <code>String</code> - a hex colour code for this line  
+**See**: [http://content.tfl.gov.uk/tfl-colour-standards-issue04.pdf](http://content.tfl.gov.uk/tfl-colour-standards-issue04.pdf)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| lineId | <code>LineId</code> \| <code>String</code> | a stirng containing the line id e.g. bakerloo, circle, ect |
+
 
 * * *
 
