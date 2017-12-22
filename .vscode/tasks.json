@@ -7,11 +7,6 @@
       "type": "gulp",
       "task": "generateDocs",
       "problemMatcher": []
-    },
-    {
-      "type": "npm",
-      "script": "test:harmony",
-      "problemMatcher": []
     }
   ]
 }
