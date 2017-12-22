@@ -1,6 +1,6 @@
 {
     "name": "tfl-unified-api",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "An abstraction layer for accessing the TfL Unified API",
     "keywords": [
       "tfl",
