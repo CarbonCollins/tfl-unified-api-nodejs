@@ -18,16 +18,17 @@ matrix:
     - UNIT=test
 env:
   global:
-    - CC_TEST_REPORTER_ID=4ec83f1d841acdd74d7b402ee6502e15a12fcc882e09f732cbf859a2c1c595f4
-    - NODE_ENV=testing
+  - NODE_ENV=testing
+  - secure: VyvQ0x0TyBHLJgHHxwYtk1o3bnAdge2wwoFnJN5/jqP1IQPHzjpDkqYErg4AzObRD9dGmw5D3/tZB9B7k2GMsJkX5HMjBoOCqxMhhCOkC7p6eFsFpv7gYTfGgeGAcHailfLLkH+oi7Qc3+XL/EDzWK0ES9c3RR0DxfMSbiiqbaKNwiAYjIh9Bp/6D66G14O35e61dV6bFDqb0WM6CnhVWyYc6beFz4eZOrMM60USShfE72vabkMer4pKozx0tKJBNYqDz0HcPJd8ET1oGm8RD0Ccuxf/cijOS1El+wPsOySPBXWZwVbYW/aD2g47MQM+y79IrK68TflISiQZOAPy7ie57G7PfbBt16K/EjtC1ecx3Usf3QWeNrydPOtzp2+Aj/ElKogSt0fuVd39wSGmA2QwKqdvTUbzNvXFi1XpjfbbCP3hM4Le5jaG8zexICSNyMJBKvR5/IEWdmbtcLiPRx+WV1ckuQvgeVExanAWhqfmXnFyGsyarVn9zmTl0f3z931g9s4+kO31kt88C6QDBlM6jeTLxeccdQe0PinsQKk5wubpaF9tmdg/zHyXYiYB0dbgO6ApCpF5/WM7bs2Lgb8L810xyukm6CYTK7CqcMDKzBE5UVBf4K9mR28KX8RaRFc8WcbYpsd/HsUGDyf83DbndOHvKbesY5ZZFF7Bnl0=
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
-  - npm run $UNIT
+- npm run $UNIT
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 notifications:
   slack:
-    secure: idZySEFjzRjO1jbvuYf/uQ16Qq/kWR6rvq202y1IGzXsVrvGReoSvB5B1tRf0JkacHQFwOd/zn6qfvmlUA9ItpAkWg+ZNHooNDlrOxjkqPUEKF0K70HrKUDfkqAQwJy9tzrFD4YYRw01jm7/NPuLu/H0VQ9zdOpIviNUpI916wgKJOQSk/X70pzl+8FGo8DDSmeM7tfYcFt/WtBeRzINeVQKnzOU8IhEiJUB1uoud/i0ntOnJyRtnckAyrTiZeiZOmNWmdeNJX0R3Np+eBoKM641/vFqQZmnLBUnw1pUVleiH4lYzBGaVNLgJdEPbaPP12+wDwTDKT70YcBnTFbAuTx66TVIl39aJQlvfQp8+6NKpFc5FnvqWtxx0VN7MidzikIiFz/6IWi7+G0lhn4Suoev0rFsh39Z7dWSSd7YwNmEPgs9OWyHZicuAobyE7C9W/sJ9ZSvt2wSGU9lXuyrcIDX1GbGKDyqmcqeTDOK0pEvyrL3GI/P7yfqWe7TyEV7pcwC58HT6yWueCj86JIA7IE3/+o+U6zNORd3ySKYmWHjw5fPz8HFDYeUS1kDbJYIXsX28ZQVExOQW0FIhIoDoH95v7K4dS41190sx6VCpQLvPIQqm+yvl90Qk8DEw/NxJY6CFOjVeI5Ao5ofUWtmzYQ36EH5M05BScg/mp+HKCI=
+    secure: Ts7NvAOpVXIDq4B2W+s6MBfTOG1vW3UGxT3OPQ1k90Jfd6hzeA1nVWft+md0VBcEVQffATZGVyqlLfSGI5TMZTg+byYAw11emvQbvSkgvqWhQyFxVuCNoEQQWLZdk4SWVaizpBypzpY29piBq2LkHy7FoWA5/hFPydChfjRQjb68TKHBzOnDvtr8XZiMIZIyIQDxtAVhE5sO37ta7TRPoS0HJHRdZwtUeFRn0zYLxDb3kFXvnkziR0rEL4vS7ZWlLK7eEVRKTXWUwvyuYID7LjytWQZLCw6Vmj7Fz+EM9r7WA0RFj8jZEJ2+adGYMPLvyuvjtoVY1lxehaeIJiRvm2lNO3F1G85G+OS71Qth6XlGF1FCld2oXhrvx73r6nmovsEFsqS+lN9ajB5kNvi4npzmIbYAtx0n7ZUovMHTMhLNRfdCw51L72ABGYZDb0rsZTKFLUokBmuFAGFQBkwrlwDy1qG5C0Ak2MYHUTwYxt+u1RoHqvRyubeHUIQZk028zF93JB5OKyEhNHeR0xpr0B5j5/VUMFIR66x5S/QHEgG9kUVUDa/xBm9ZsV19DyxxnohzbqtFP6MHA/qKO9JdBQEQRNH7QhY1k0IMqr7v99GjtgZsjY6H6Mb4zB1TQ+IlM9mfLlsOmiDo+IqFJ9j7XhxD90UZpvcDpK0uxz49Xko=
