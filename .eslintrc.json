@@ -9,7 +9,7 @@
   ],
   "extends": [
     "airbnb-base",
-    "security/recommended"
+    "eslint-config-security/recommended"
   ],
   "env": {
     "mocha": true,
