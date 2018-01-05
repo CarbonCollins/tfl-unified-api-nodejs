@@ -9,7 +9,7 @@
   ],
   "extends": [
     "airbnb-base",
-    "plugin:security"
+    "security/recommended"
   ],
   "env": {
     "mocha": true,
